@@ -41,8 +41,12 @@ class Category(Model):
 
 class CategoryCounters(Model):
     category_id = TimeUUID()
-    questions = Counter()
-    answers = Counter()
+
+    questions = Counter() # direct questions
+    questions_total = Counter() # including all subs
+    answers = Counter() # direct
+    answers_total = Counter() # includes subs
+
 
 class CategoryChildren(Model):
     """
