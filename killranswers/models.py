@@ -9,11 +9,11 @@ class User(Model):
     you'll want to map this in your application's user database
     create a user in killranswers for every user in your system
     """
-    user_id = TimeUUID(primary_key=True)
+    user_id = TimeUUID(primary_key=True, default=uuid1)
     name = Text()
 
 class Category(Model):
-    category_id = TimeUUID(primary_key=True)
+    category_id = TimeUUID(primary_key=True, default=uuid1)
     name = Text()
     parent_categories = List(TimeUUID)
     # parent_category_id = TimeUUID(primary_key=True)
@@ -49,16 +49,20 @@ class CategoryChildren(Model):
     child_category_name = Text()
 
 class Question(Model):
-    question_id = TimeUUID(primary_key=True)
+    question_id = TimeUUID(primary_key=True, default=uuid1)
     user_id = TimeUUID()
     text = Text()
     user = Text() # user's name
+    category_id = TimeUUID()
 
     @classmethod
     def create(cls, user, text):
         pass
 
-
+class QuestionByCategory(Model):
+    # sorted by newest first
+    category_id = TimeUUID(primary_key=True)
+    question_id = TimeUUID(primary_key=True, clustering_order="DESC")
 
 class Answer(Model):
     question_id = TimeUUID(primary_key=True)
