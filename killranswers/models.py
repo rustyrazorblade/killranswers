@@ -74,3 +74,13 @@ class Answer(Model):
     @classmethod
     def create(cls, user, question, text):
         pass
+
+class UserCategorySubscription(Model):
+    user_id = TimeUUID(primary_key=True)
+    category_id = TimeUUID(primary_key=True)
+
+class QuestionRating(Model):
+    # probably just an upvote 1 / downvote 0 thing
+    question_id = TimeUUID(primary_key=True)
+    user_id = TimeUUID(primary_key=True)
+    rating = Int()
