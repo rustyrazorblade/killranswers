@@ -1,7 +1,8 @@
+from cassandra.cqlengine.connection import setup
 
 def cassandra():
-    pass
+    # TODO move to use configuration
+    setup(["localhost"])
 
 def kafka():
     pass
-        
