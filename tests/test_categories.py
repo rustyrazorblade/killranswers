@@ -1,10 +1,16 @@
-# creating new categories
+import pytest
+from killranswers.connections import cassandra
+
+pytest.fixture()
+def connect():
+    cassandra()
 
 def create_sample_tree():
     # creates a tree 5 levels deep for testing
     # 5 categories per level
     pass
 
+# creating new categories
 def test_create_category():
     pass
 
