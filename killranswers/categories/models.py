@@ -3,22 +3,24 @@ from uuid import uuid1
 from cassandra.cqlengine.models import Model
 from cassandra.cqlengine.columns import *
 
+root = "00000000-0000-0000-0000-000000000000"
 
 class Category(Model):
-    category_id = TimeUUID(primary_key=True, default=uuid1)
+    category_id = UUID(primary_key=True, default=uuid1)
     name = Text()
     parent_categories = List(TimeUUID) # first parent on the left, root at the end
     # parent_category_id = TimeUUID(primary_key=True)
+
 
     @classmethod
     def create(self, parent, name):
         pass
 
     @classmethod
-    def create_root(self, name):
+    def create_root(self):
         # creating a root category has slightly different rules
-        return super(self, Category).create(name=name)
-        
+        return super(self, Category).create(category_id=root, name="root")
+
     @classmethod
     def get_root_nodes(cls):
         pass

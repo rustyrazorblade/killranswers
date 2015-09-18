@@ -9,3 +9,4 @@ from killranswers.categories.models import *
 cassandra()
 
 sync_table(Category)
+Category.create_root()
