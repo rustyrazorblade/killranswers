@@ -33,12 +33,15 @@ class Category(Model):
         """
         moves to a new parent category
         updates the category children
+        updates the category counts
         """
         pass
 
 
-class CategoryStats(Model):
-    pass
+class CategoryCounters(Model):
+    category_id = TimeUUID()
+    questions = Counter()
+    answers = Counter()
 
 class CategoryChildren(Model):
     """

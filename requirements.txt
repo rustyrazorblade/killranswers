@@ -2,3 +2,4 @@ pytest
 webtest
 bottle
 cassandra-driver
+celery
