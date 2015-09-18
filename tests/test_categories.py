@@ -1,5 +1,5 @@
 
-from killranswers.categories.models import Category
+from killranswers.categories.models import Category, root
 from killranswers.connections import cassandra
 
 def create_sample_tree():
@@ -11,10 +11,11 @@ def create_sample_tree():
 def test_create_root():
     root = Category.create_root()
 
-
 # creating new categories
 def test_create_category():
-    pass
+    r = Category.get(category_id=root)
+    cat = Category.create(r, "something")
+    assert cat is not None
 
 
 # moving categories

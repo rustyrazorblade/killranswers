@@ -14,7 +14,9 @@ class Category(Model):
 
     @classmethod
     def create(self, parent, name):
-        pass
+        assert isinstance(parent, Category)
+        # set up parent categories
+        return super(self, Category).create(name=name)
 
     @classmethod
     def create_root(self):
@@ -22,7 +24,7 @@ class Category(Model):
         return super(self, Category).create(category_id=root, name="root")
 
     @classmethod
-    def get_root_nodes(cls):
+    def get_top_levels(cls):
         pass
 
     @property
