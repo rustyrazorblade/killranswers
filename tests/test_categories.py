@@ -1,9 +1,4 @@
-import pytest
-from killranswers.connections import cassandra
-
-pytest.fixture()
-def connect():
-    cassandra()
+from killranswers.categories.models import Category
 
 def create_sample_tree():
     # creates a tree 5 levels deep for testing

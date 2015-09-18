@@ -1,6 +1,10 @@
 from bottle import Bottle, route, run, post
 import uuid
 
+from killranswers.connections import cassandra
+
+cassandra()
+
 app = Bottle()
 def uuid_filter(config):
     regexp = r"[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"

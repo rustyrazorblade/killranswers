@@ -1,7 +1,7 @@
 from uuid import uuid1
 
-from cassandra.cqlengine import Model
-from cassandra.cqlengine.types import *
+from cassandra.cqlengine.models import Model
+from cassandra.cqlengine.columns import *
 
 
 class Category(Model):
@@ -22,14 +22,14 @@ class Category(Model):
     @property
     def parent(self):
         # returns a single Category object or None
+        pass
 
     @property
     def parents(self):
         # returns a list of category objects
+        pass
 
     # track the full category list
-
-
     def move(self, new_parent):
         """
         moves to a new parent category
@@ -40,7 +40,7 @@ class Category(Model):
 
 
 class CategoryCounters(Model):
-    category_id = TimeUUID()
+    category_id = TimeUUID(primary_key=True)
 
     questions = Counter() # direct questions
     questions_total = Counter() # including all subs
