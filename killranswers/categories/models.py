@@ -17,6 +17,10 @@ class Category(Model):
     @classmethod
     def create_root(self, name):
         # creating a root category has slightly different rules
+        return super(self, Category).create(name=name)
+        
+    @classmethod
+    def get_root_nodes(cls):
         pass
 
     @property

@@ -1,17 +1,20 @@
+
 from killranswers.categories.models import Category
+from killranswers.connections import cassandra
 
 def create_sample_tree():
     # creates a tree 5 levels deep for testing
     # 5 categories per level
     pass
 
+# creating a root category
+def test_create_root():
+    root = Category.create_root("test")
+
 # creating new categories
 def test_create_category():
     pass
 
-# creating a root category
-def test_create_root():
-    pass
 
 # moving categories
 def test_move_category_children_parents_updated():
