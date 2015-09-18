@@ -15,12 +15,21 @@ class User(Model):
 class Category(Model):
     category_id = TimeUUID(primary_key=True, default=uuid1)
     name = Text()
-    parent_categories = List(TimeUUID)
+    parent_categories = List(TimeUUID) # first parent on the left, root at the end
     # parent_category_id = TimeUUID(primary_key=True)
+
+    @classmethod
+    def create(self, parent, name):
+        pass
+
+    @classmethod
+    def create_root(self, name):
+        # creating a root category has slightly different rules
+        pass
 
     @property
     def parent(self):
-        # returns a single Category object
+        # returns a single Category object or None
 
     @property
     def parents(self):

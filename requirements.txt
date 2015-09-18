@@ -3,3 +3,5 @@ webtest
 bottle
 cassandra-driver
 celery
+ipython
+jupyter
