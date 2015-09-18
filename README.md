@@ -1,5 +1,4 @@
 Killranswers is an api for a Q&A system written in Python.  
 
-Cassandra for storage
-Spark for machine learning, bulk analytics, and streaming
+DataStax Enterprise 4.8 for storage, search, analytics
 Kafka for pub/sub
