@@ -14,8 +14,10 @@ def test_create_root():
 # creating new categories
 def test_create_category():
     r = Category.get(category_id=root)
-    cat = Category.create(r, "something")
+    cat = r.create_sub("something")
     assert cat is not None
+    assert len(cat.parent_categories) == 0
+
 
 
 # moving categories

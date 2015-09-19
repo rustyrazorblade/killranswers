@@ -1,9 +1,10 @@
 from uuid import uuid1
-
+import uuid
+import copy
 from cassandra.cqlengine.models import Model
 from cassandra.cqlengine.columns import *
 
-root = "00000000-0000-0000-0000-000000000000"
+root = uuid.UUID("00000000-0000-0000-0000-000000000000")
 
 class Category(Model):
     category_id = UUID(primary_key=True, default=uuid1)
@@ -11,12 +12,12 @@ class Category(Model):
     parent_categories = List(TimeUUID) # first parent on the left, root at the end
     # parent_category_id = TimeUUID(primary_key=True)
 
-
-    @classmethod
-    def create(self, parent, name):
-        assert isinstance(parent, Category)
+    def create_sub(self, name):
         # set up parent categories
-        return super(self, Category).create(name=name)
+        parents = self.parent_categories[:]
+        if self.category_id != root:
+            parents.insert(0, self.category_id)
+        return Category.create(name=name, parent_categories=parents)
 
     @classmethod
     def create_root(self):
