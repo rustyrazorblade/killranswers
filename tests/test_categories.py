@@ -17,6 +17,8 @@ def test_create_category():
     cat = r.create_sub("something")
     assert cat is not None
     assert len(cat.parent_categories) == 0
+    sub = cat.create_sub("subcat")
+    assert len(sub.parent_categories) == 1
 
 
 
