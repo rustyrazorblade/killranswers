@@ -20,6 +20,10 @@ class Category(Model):
         if self.category_id != root:
             parents.insert(0, self.category_id)
         cat = Category.create(name=name, parent_categories=parents)
+        # update the children table
+        CategoryChildren.create(category_id=self.category_id,
+                                child_category_id=cat.category_id,
+                                child_category_name=cat.name)
         # update statistics
         return cat
 
@@ -44,6 +48,9 @@ class Category(Model):
     @property
     def parents(self):
         # returns a list of category objects
+        pass
+
+    def get_children(self):
         pass
 
     # track the full category list

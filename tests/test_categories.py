@@ -24,6 +24,14 @@ def test_create_category():
     sub = cat.create_sub("subcat")
     assert len(sub.parent_categories) == 1
 
+def test_get_children():
+    r = Category.get(category_id=root)
+    # fake root
+    froot = r.create_sub("something")
+    cat1 = froot.create_sub("sub1")
+    cat2 = froot.create_sub("sub1")
+    children = r.get_children()
+    assert len(children == 2)
 
 
 # moving categories
