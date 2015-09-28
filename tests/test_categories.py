@@ -30,8 +30,8 @@ def test_get_children():
     froot = r.create_sub("something")
     cat1 = froot.create_sub("sub1")
     cat2 = froot.create_sub("sub1")
-    children = r.get_children()
-    assert len(children == 2)
+    children = froot.get_children()
+    assert len(children) == 2
 
 
 # moving categories

@@ -50,7 +50,7 @@ class Category(Model):
         pass
 
     def get_children(self):
-        pass
+        return CategoryChildren.objects(category_id=self.category_id)
 
     # track the full category list
     def move(self, new_parent):
