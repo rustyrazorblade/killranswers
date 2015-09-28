@@ -37,6 +37,9 @@ def test_get_children():
     assert "sub1" in names
     assert "sub2" in names
 
+    # should have a single parent cat, the froot
+    # because root is always there it's ignored
+    assert cat1.parent_categories == [froot.category_id]
 
 # moving categories
 def test_move_category_children_parents_updated():
