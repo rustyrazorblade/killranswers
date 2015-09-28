@@ -6,6 +6,7 @@ interface KillrAnswers {
     getRootCategory @2 () -> (category: Category);
     registerUser @3 (user_id :Text) -> ();
     getChildCategories @4 (parent :Text) -> ( categories:CategoryList );
+    answer @5 (question : Text, user : Text, text : Text) -> Answer;
 }
 
 struct Question {
@@ -21,4 +22,11 @@ struct Category {
 
 struct CategoryList {
     categories @0 : List(Category);
+}
+
+struct Answer {
+    id @0 : Text;
+    question @1 : Text;
+    user @2 : Text;
+    text @3 : Text;
 }
