@@ -2,7 +2,7 @@ import os
 import socket
 import capnp
 import killranswers_capnp
-from killranswers.categories import Category
+from killranswers import User, Category, Question
 
 class KillrAnswersServer(killranswers_capnp.KillrAnswers.Server):
     def ask(self, text, category, user, **kwargs):
@@ -24,6 +24,10 @@ class KillrAnswersServer(killranswers_capnp.KillrAnswers.Server):
         cat.id = str(root.category_id)
         cat.name = root.name
         return cat
+
+    def registerUser(self, user_id, **kwargs):
+        User.create(user_id)
+
 
 
 def get_server():
