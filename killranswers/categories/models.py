@@ -27,6 +27,10 @@ class Category(Model):
         return cat
 
     @classmethod
+    def get(cls, category_id):
+        return super(cls, Category).get(category_id=category_id)
+
+    @classmethod
     def create_root(cls):
         # creating a root category has slightly different rules
         return super(cls, Category).create(category_id=root, name="root")

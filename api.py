@@ -30,6 +30,20 @@ class KillrAnswersServer(killranswers_capnp.KillrAnswers.Server):
     def registerUser(self, user_id, **kwargs):
         User.create(user_id)
 
+    def getChildCategories(self, parent, **kwargs):
+        cat = Category.get(parent)
+        children = cat.get_children()
+
+        response = killranswers_capnp.CategoryList.new_message()
+        cats = response.init("categories", len(children))
+        i = 0
+        for x in children:
+            cats[i].id = str(x.category_id)
+            cats[i].name = x.child_category_name
+            i += 1
+        return response
+
+
 
 
 def get_server():

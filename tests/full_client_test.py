@@ -33,6 +33,9 @@ if __name__  == "__main__":
     print new_cat
     # create a sub category of the new category
 
+    # get child categories of the root
+    children = cap.getChildCategories(cat).wait()
+    print "children ", children
 
     result = cap.ask(text="api test").wait()
     print "api question: ", result
