@@ -42,12 +42,18 @@ class Category(Model):
     @property
     def parent(self):
         # returns a single Category object or None
-        pass
+        if self.parent_categories:
+            return Category.get(category_id=self.parent_categories[0])
+
+
 
     @property
     def parents(self):
         # returns a list of category objects
-        pass
+        result = []
+        for x in self.parent_categories:
+            result.append(Category.get(category_id=x))
+        return result
 
     def get_children(self):
         return CategoryChildren.objects(category_id=self.category_id)

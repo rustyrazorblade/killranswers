@@ -41,6 +41,9 @@ def test_get_children():
     # because root is always there it's ignored
     assert cat1.parent_categories == [froot.category_id]
 
+    assert cat1.parents[0] == froot
+    assert cat1.parent == froot
+
 # moving categories
 def test_move_category_children_parents_updated():
     pass
