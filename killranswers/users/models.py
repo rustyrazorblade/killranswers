@@ -1,7 +1,7 @@
 from uuid import uuid1
 
-from cassandra.cqlengine import Model
-from cassandra.cqlengine.types import *
+from cassandra.cqlengine.models import Model
+from cassandra.cqlengine.columns import *
 
 
 class User(Model):
@@ -11,7 +11,6 @@ class User(Model):
     create a user in killranswers for every user in your system
     """
     user_id = TimeUUID(primary_key=True, default=uuid1)
-    name = Text()
 
 class UserCategorySubscription(Model):
     user_id = TimeUUID(primary_key=True)
