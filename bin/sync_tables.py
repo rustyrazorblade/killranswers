@@ -5,9 +5,11 @@ sys.path.append("")
 from cassandra.cqlengine.management import sync_table
 from cassandra.cqlengine.models import ModelMetaClass
 from killranswers.connections import  cassandra
+
 from killranswers.categories.models import *
 from killranswers.questions.models import *
 from killranswers.users.models import *
+from killranswers.answers.models import *
 
 cassandra()
 
