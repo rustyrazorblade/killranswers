@@ -28,6 +28,9 @@ class Question(Model):
                                   text=text)
         # update category statistics
         return question
+    @classmethod
+    def get(cls, question_id):
+        return super(cls, Question).get(question_id=question_id)
 
 class QuestionByCategory(Model):
     # sorted by newest first

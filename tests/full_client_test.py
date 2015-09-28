@@ -40,7 +40,13 @@ if __name__  == "__main__":
     children = cap.getChildCategories(cat).wait()
     print "children ", children
 
-    result = cap.ask(text="api test",
+    # the oldest question in the universe
+    result = cap.ask(text="Dr. Who?",
                      category=new_cat.category.id,
                      user=user_id).wait()
     print "api question: ", result
+
+    q = result.question
+    # answer the question...
+    answer = cap.answer(question=q.id, user=user_id, text="Silence will fall.").wait()
+    print answer

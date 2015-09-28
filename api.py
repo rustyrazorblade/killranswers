@@ -2,7 +2,7 @@ import os
 import socket
 import capnp
 import killranswers_capnp as api
-from killranswers import User, Category, Question
+from killranswers import User, Category, Question, Answer
 
 class KillrAnswersServer(api.KillrAnswers.Server):
     def ask(self, text, category, user, **kwargs):
@@ -48,6 +48,18 @@ class KillrAnswersServer(api.KillrAnswers.Server):
             i += 1
         return response
 
+    def answer(self, question, user, text, **kwargs):
+        print "Answering", question, user, text
+        q = Question.get(question)
+        u = User.get(user)
+
+        answer = Answer.create(user=u, question=q, text=text)
+        args = {"id": str(answer.answer_id),
+                "question": str(q.question_id),
+                "user": str(u.user_id),
+                "text": answer.text}
+
+        return api.Answer.new_message(**args)
 
 
 
