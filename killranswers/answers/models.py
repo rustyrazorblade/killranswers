@@ -1,7 +1,7 @@
 from uuid import uuid1
 
-from cassandra.cqlengine import Model
-from cassandra.cqlengine.types import *
+from cassandra.cqlengine.models import Model
+from cassandra.cqlengine.columns import *
 
 
 class Answer(Model):
@@ -9,7 +9,6 @@ class Answer(Model):
     answer_id = TimeUUID(primary_key=True)
     user_id = Text()
     text = Text()
-    user = Text() # user's name
 
     @classmethod
     def create(cls, user, question, text):

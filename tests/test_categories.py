@@ -1,4 +1,4 @@
-
+from uuid import uuid4, uuid1
 from killranswers.categories.models import Category, root
 from killranswers.connections import cassandra
 

@@ -13,15 +13,11 @@ from killranswers.answers.models import *
 
 cassandra()
 
-# sync_table(Category)
-# Category.create_root()
-# sync_table(Question)
-# sync_table(User)
-# import ipdb; ipdb.set_trace()
-
 for model in [x for x in globals().values()
                 if isinstance(x, ModelMetaClass) and
                 x.__abstract__ == False]:
     # import ipdb; ipdb.set_trace()
 
     sync_table(model)
+
+Category.create_root()

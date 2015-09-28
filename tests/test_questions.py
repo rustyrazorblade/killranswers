@@ -1,5 +1,5 @@
 from killranswers import Question, Category
-from uuid import uuid4
+from uuid import uuid4, uuid1
 
 root = Category.get_root()
 
@@ -11,4 +11,4 @@ def get_cat():
 
 def test_ask():
     c = get_cat()
-    q = Question.create(c, "test question", uuid4())
+    q = Question.create(c, "test question", uuid1())

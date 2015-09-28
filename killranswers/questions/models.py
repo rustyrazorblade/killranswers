@@ -10,7 +10,7 @@ class Question(Model):
     question_id = TimeUUID(primary_key=True, default=uuid1)
     user_id = Text()
     text = Text()
-    category_id = TimeUUID(required=True)
+    category_id = UUID(required=True)
 
     @classmethod
     def create(cls, category, text, user_id):

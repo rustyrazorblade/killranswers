@@ -1,4 +1,4 @@
-from uuid import uuid1
+from uuid import uuid1, uuid4
 import uuid
 import copy
 from cassandra.cqlengine.models import Model
@@ -8,10 +8,9 @@ root = uuid.UUID("00000000-0000-0000-0000-000000000000")
 
 class Category(Model):
     __table_name__ = "category"
-    category_id = UUID(primary_key=True, default=uuid1)
+    category_id = UUID(primary_key=True, default=uuid4)
     name = Text()
-    parent_categories = List(TimeUUID) # first parent on the left, root at the end
-    # parent_category_id = TimeUUID(primary_key=True)
+    parent_categories = List(UUID) # first parent on the left, root at the end
 
     def create_sub(self, name):
         # set up parent categories
@@ -64,7 +63,7 @@ class Category(Model):
 
 
 class CategoryCounters(Model):
-    category_id = TimeUUID(primary_key=True)
+    category_id = UUID(primary_key=True)
 
     questions = Counter() # direct questions
     questions_total = Counter() # including all subs
@@ -76,6 +75,6 @@ class CategoryChildren(Model):
     """
     maintaining the list of children of a given category
     """
-    category_id = TimeUUID(primary_key=True)
-    child_category_id = TimeUUID(primary_key=True)
+    category_id = UUID(primary_key=True)
+    child_category_id = UUID(primary_key=True)
     child_category_name = Text()
