@@ -29,9 +29,13 @@ def test_get_children():
     # fake root
     froot = r.create_sub("something")
     cat1 = froot.create_sub("sub1")
-    cat2 = froot.create_sub("sub1")
+    cat2 = froot.create_sub("sub2")
     children = froot.get_children()
     assert len(children) == 2
+    names = [x.child_category_name for x in children]
+
+    assert "sub1" in names
+    assert "sub2" in names
 
 
 # moving categories
