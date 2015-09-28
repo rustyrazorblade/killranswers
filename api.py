@@ -13,16 +13,15 @@ class KillrAnswersServer(api.KillrAnswers.Server):
         question = Question.create(cat, text, u)
 
         q = api.Question.new_message(id=str(question.question_id),
-                                        text=question.text,
-                                        category=str(cat.category_id)
-                                        )
+                                     text=question.text,
+                                     category=str(cat.category_id))
         return q
 
     def createCategory(self, text, parent, **kwargs):
         p = Category.get(category_id=parent)
         cat = p.create_sub(text)
         c = api.Category.new_message()
-        c.id = str(cat.category_id  )
+        c.id = str(cat.category_id)
         c.name = cat.name
         return c
 

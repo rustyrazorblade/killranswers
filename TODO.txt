@@ -1,3 +1,3 @@
-ask question in api
-add user to question as mandatory field
+answer a question
+track questions by user
 Sphinx documentation
