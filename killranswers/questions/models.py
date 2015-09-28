@@ -13,7 +13,8 @@ class Question(Model):
     category_id = UUID(required=True)
 
     @classmethod
-    def create(cls, category, text, user_id):
+    def create(cls, category, text, user):
+        user_id = user.user_id
         question = super(cls, Question).\
                     create(category_id=category.category_id,
                            text=text,
