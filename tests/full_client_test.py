@@ -12,11 +12,10 @@ if __name__  == "__main__":
 
     # get root category
     root = cap.getRootCategory().wait()
-    cat_id = root.categoryId
-    # cat = cap.createCategory(name="test", parent=root.categoryId).wait()
+    cat = root.category.id
+    print cat
 
-    # print "new category: ",
-    # print cat
+    cat = cap.createCategory(name="test", parent=cat).wait()
 
     # create a category
 

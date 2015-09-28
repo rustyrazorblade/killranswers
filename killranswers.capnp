@@ -7,11 +7,11 @@ interface KillrAnswers {
 }
 
 struct Question {
-    questionId @0 : Text;
-    questionText @1 : Text;
+    id @0 : Text;
+    text @1 : Text;
 }
 
 struct Category {
-    categoryId @0 : Text;
+    id @0 : Text;
     name @1: Text;
 }

@@ -8,19 +8,20 @@ class KillrAnswersServer(killranswers_capnp.KillrAnswers.Server):
     def ask(self, text, **kwargs):
         print "incoming"
         print str(text)
-        q = killranswers_capnp.Question.new_message(questionId="test",
-                                        questionText="blah")
+        q = killranswers_capnp.Question.new_message(id="test",
+                                        text="blah")
         return q
 
     def createCategory(self, name, parent, **kwargs):
         cat = killranswers_capnp.Category.new_message()
+
         return cat
 
     def getRootCategory(self, **kwargs):
         root = Category.get_root()
         cat = killranswers_capnp.Category.new_message()
-        # cat.categoryId = root.category_id
-        # cat.name = root.name
+        cat.id = str(root.category_id)
+        cat.name = root.name
         return cat
 
 
@@ -29,6 +30,8 @@ def get_server():
     return server
 
 if __name__ == "__main__":
+    from killranswers.connections import cassandra
+    cassandra()
     server = get_server()
     print "Starting server.  To kill:\n\nkill %d" % os.getpid()
     server.run_forever()

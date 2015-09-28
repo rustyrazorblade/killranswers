@@ -20,14 +20,14 @@ class Category(Model):
         return Category.create(name=name, parent_categories=parents)
 
     @classmethod
-    def create_root(self):
+    def create_root(cls):
         # creating a root category has slightly different rules
-        return super(self, Category).create(category_id=root, name="root")
+        return super(cls, Category).create(category_id=root, name="root")
 
     @classmethod
-    def get_root(self):
-        return super(self, Category).get(category_id=root)
-        
+    def get_root(cls):
+        return super(cls, Category).get(category_id=root)
+
     @classmethod
     def get_top_levels(cls):
         pass
