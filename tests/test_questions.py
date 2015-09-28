@@ -1,6 +1,14 @@
 from killranswers import Question, Category
 
-# how to get those awesome scaffolds
-def test_ask():
+root = Category.get_root()
 
-    q = Question.create
+def get_cat():
+    # how to get those awesome scaffolds
+    # TODO: use test name instead of the hard coded name
+    return root.create_sub("category-test")
+
+
+def test_ask():
+    c = get_cat()
+
+    q = Question.create(c, "test question")

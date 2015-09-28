@@ -7,6 +7,7 @@ from cassandra.cqlengine.columns import *
 root = uuid.UUID("00000000-0000-0000-0000-000000000000")
 
 class Category(Model):
+    __table_name__ = "category"
     category_id = UUID(primary_key=True, default=uuid1)
     name = Text()
     parent_categories = List(TimeUUID) # first parent on the left, root at the end

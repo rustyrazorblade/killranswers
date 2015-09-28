@@ -6,6 +6,7 @@ from cassandra.cqlengine.columns import *
 
 
 class Question(Model):
+    __table_name__ = "question"
     question_id = TimeUUID(primary_key=True, default=uuid1)
     user_id = TimeUUID()
     text = Text()
@@ -13,11 +14,11 @@ class Question(Model):
     category_id = TimeUUID(required=True)
 
     @classmethod
-    def create(cls, category, user, text):
+    def create(cls, category, text):
         question = super(cls, Question).\
                     create(category_id=category.category_id,
-                           text=text,
-                           user_id=user.user_id)
+                           text=text)
+
         # update category statistics
         return question
 

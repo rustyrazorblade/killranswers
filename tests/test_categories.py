@@ -2,6 +2,8 @@
 from killranswers.categories.models import Category, root
 from killranswers.connections import cassandra
 
+cassandra()
+
 def create_sample_tree():
     # creates a tree 5 levels deep for testing
     # 5 categories per level
