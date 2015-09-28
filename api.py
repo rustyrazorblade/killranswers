@@ -58,7 +58,7 @@ class KillrAnswersServer(api.KillrAnswers.Server):
                 "question": str(q.question_id),
                 "user": str(u.user_id),
                 "text": answer.text}
-
+        print args
         return api.Answer.new_message(**args)
 
 
