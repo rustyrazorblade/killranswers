@@ -7,7 +7,7 @@ from cassandra.cqlengine.types import *
 class Answer(Model):
     question_id = TimeUUID(primary_key=True)
     answer_id = TimeUUID(primary_key=True)
-    user_id = TimeUUID()
+    user_id = Text()
     text = Text()
     user = Text() # user's name
 

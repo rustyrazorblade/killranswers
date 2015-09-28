@@ -7,11 +7,14 @@ from cassandra.cqlengine.columns import *
 class User(Model):
     """
     users are created with UUIDs, managed internally
-    you'll want to map this in your application's user database
     create a user in killranswers for every user in your system
+    we'll keep the mapping in killranswers
     """
-    user_id = TimeUUID(primary_key=True, default=uuid1)
+    user_id = Text(primary_key=True)
+    @classmethod
+    def create(cls, user_id):
+        return super(cls, User).create(user_id=str(user_id))
 
 class UserCategorySubscription(Model):
-    user_id = TimeUUID(primary_key=True)
+    user_id = Text(primary_key=True)
     category_id = TimeUUID(primary_key=True)
