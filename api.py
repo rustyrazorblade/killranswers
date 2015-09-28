@@ -6,7 +6,9 @@ class KillrAnswersServer(killranswers_capnp.KillrAnswers.Server):
     def ask(self, text, **kwargs):
         print "incoming"
         print str(text)
-        return str(text)
+        q = killranswers_capnp.Question.new_message(questionId="test",
+                                        questionText="blah")
+        return q
 
 def get_server():
     server = capnp.TwoPartyServer('*:6000', bootstrap=KillrAnswersServer())

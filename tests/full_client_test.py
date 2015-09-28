@@ -13,7 +13,6 @@ results = []
 def add_result(x, n):
     results.append(x)
     n()
-    
+
 result = cap.ask(text="test")
-result = result.then(lambda x: cap.ask(text="who"))
 print result.wait()

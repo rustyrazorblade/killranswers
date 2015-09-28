@@ -1,7 +1,7 @@
 @0xce4c7cd66480f6f2;
 
 interface KillrAnswers {
-    ask @0 (text :Text) -> (question: Text);
+    ask @0 (text :Text) -> (question: Question);
     createCategory @1 (i: Text) -> (category: Category);
 }
 
