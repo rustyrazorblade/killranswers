@@ -12,9 +12,10 @@ class KillrAnswersServer(killranswers_capnp.KillrAnswers.Server):
                                         text="blah")
         return q
 
-    def createCategory(self, name, parent, **kwargs):
+    def createCategory(self, text, parent, **kwargs):
         cat = killranswers_capnp.Category.new_message()
-
+        cat.id = "test"
+        cat.name = "test"
         return cat
 
     def getRootCategory(self, **kwargs):

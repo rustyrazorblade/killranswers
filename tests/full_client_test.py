@@ -13,9 +13,9 @@ if __name__  == "__main__":
     # get root category
     root = cap.getRootCategory().wait()
     cat = root.category.id
-    print cat
+    print 'root cat: ', cat
 
-    cat = cap.createCategory(name="test", parent=cat).wait()
+    cap.createCategory(text="api provided name", parent="test")
 
     # create a category
 
