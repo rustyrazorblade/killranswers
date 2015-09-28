@@ -1,10 +1,10 @@
 import os
 import socket
 import capnp
-import killranswers_capnp
+import killranswers_capnp as api
 from killranswers import User, Category, Question
 
-class KillrAnswersServer(killranswers_capnp.KillrAnswers.Server):
+class KillrAnswersServer(api.KillrAnswers.Server):
     def ask(self, text, category, user, **kwargs):
         print "incoming"
         print str(text)
@@ -12,7 +12,7 @@ class KillrAnswersServer(killranswers_capnp.KillrAnswers.Server):
         u = User.get(user)
         question = Question.create(cat, text, u)
 
-        q = killranswers_capnp.Question.new_message(id=str(question.question_id),
+        q = api.Question.new_message(id=str(question.question_id),
                                         text=question.text,
                                         category=str(cat.category_id)
                                         )
@@ -21,14 +21,14 @@ class KillrAnswersServer(killranswers_capnp.KillrAnswers.Server):
     def createCategory(self, text, parent, **kwargs):
         p = Category.get(category_id=parent)
         cat = p.create_sub(text)
-        c = killranswers_capnp.Category.new_message()
+        c = api.Category.new_message()
         c.id = str(cat.category_id  )
         c.name = cat.name
         return c
 
     def getRootCategory(self, **kwargs):
         root = Category.get_root()
-        cat = killranswers_capnp.Category.new_message()
+        cat = api.Category.new_message()
         cat.id = str(root.category_id)
         cat.name = root.name
         return cat
@@ -40,7 +40,7 @@ class KillrAnswersServer(killranswers_capnp.KillrAnswers.Server):
         cat = Category.get(parent)
         children = cat.get_children()
 
-        response = killranswers_capnp.CategoryList.new_message()
+        response = api.CategoryList.new_message()
         cats = response.init("categories", len(children))
         i = 0
         for x in children:
