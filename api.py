@@ -1,3 +1,4 @@
+import os
 import socket
 import capnp
 import killranswers_capnp
@@ -16,5 +17,5 @@ def get_server():
 
 if __name__ == "__main__":
     server = get_server()
-    print "Starting server"
+    print "Starting server.  To kill:\n\nkill %d" % os.getpid()
     server.run_forever()
