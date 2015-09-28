@@ -1,4 +1,5 @@
 from killranswers import User
 
 def test_create():
-    User.create("something")
+    user = User.create("something")
+    assert user.user_id == "something"
