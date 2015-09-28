@@ -13,6 +13,8 @@ Manage taxonomy tree
 Rich category statistics
 Spam detection
 User category subscription, fast delivery
+Question recommendations based on ALS
+
 
 Getting Started
 =================

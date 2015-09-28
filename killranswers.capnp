@@ -4,7 +4,7 @@ interface KillrAnswers {
     ask @0 (text :Text, category :Text, user :Text) -> (question: Question);
     createCategory @1 (text :Text, parent :Text) -> (category: Category);
     getRootCategory @2 () -> (category: Category);
-    registerUser @3 (user_id :Text) -> (user_id :Text);
+    registerUser @3 (user_id :Text) -> ();
 }
 
 struct Question {
