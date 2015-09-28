@@ -1,7 +1,7 @@
 from uuid import uuid1
 
-from cassandra.cqlengine import Model
-from cassandra.cqlengine.types import *
+from cassandra.cqlengine.models import Model
+from cassandra.cqlengine.columns import *
 
 
 
@@ -10,11 +10,16 @@ class Question(Model):
     user_id = TimeUUID()
     text = Text()
     user = Text() # user's name
-    category_id = TimeUUID()
+    category_id = TimeUUID(required=True)
 
     @classmethod
-    def create(cls, user, text):
-        pass
+    def create(cls, category, user, text):
+        question = super(cls, Question).\
+                    create(category_id=category.category_id,
+                           text=text,
+                           user_id=user.user_id)
+        # update category statistics
+        return question
 
 class QuestionByCategory(Model):
     # sorted by newest first
@@ -26,4 +31,4 @@ class QuestionRating(Model):
     # probably just an upvote 1 / downvote 0 thing
     question_id = TimeUUID(primary_key=True)
     user_id = TimeUUID(primary_key=True)
-    rating = Int()
+    rating = Integer()

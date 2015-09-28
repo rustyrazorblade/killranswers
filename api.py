@@ -5,7 +5,7 @@ import killranswers_capnp
 from killranswers.categories import Category
 
 class KillrAnswersServer(killranswers_capnp.KillrAnswers.Server):
-    def ask(self, text, **kwargs):
+    def ask(self, text, category, user, **kwargs):
         print "incoming"
         print str(text)
         q = killranswers_capnp.Question.new_message(id="test",

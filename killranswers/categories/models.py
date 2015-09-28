@@ -17,7 +17,9 @@ class Category(Model):
         parents = self.parent_categories[:]
         if self.category_id != root:
             parents.insert(0, self.category_id)
-        return Category.create(name=name, parent_categories=parents)
+        cat = Category.create(name=name, parent_categories=parents)
+        # update statistics
+        return cat
 
     @classmethod
     def create_root(cls):
