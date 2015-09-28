@@ -28,10 +28,11 @@ if __name__  == "__main__":
     cat = root.category.id
     print 'root cat: ', cat
 
-    cap.createCategory(text="api provided name", parent="test")
+    new_cat = cap.createCategory(text="api provided name",
+                                 parent=cat).wait()
+    print new_cat
+    # create a sub category of the new category
 
-    # create a category
 
-
-    result = cap.ask(text="test")
-    print result.wait()
+    result = cap.ask(text="api test").wait()
+    print "api question: ", result

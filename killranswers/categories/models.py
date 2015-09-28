@@ -15,6 +15,7 @@ class Category(Model):
 
     def create_sub(self, name):
         # set up parent categories
+
         parents = self.parent_categories[:]
         if self.category_id != root:
             parents.insert(0, self.category_id)
