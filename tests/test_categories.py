@@ -10,6 +10,8 @@ def create_sample_tree():
 # creating a root category
 def test_create_root():
     root = Category.create_root()
+    cat = Category.get_root()
+    assert cat.name == "root"
 
 # creating new categories
 def test_create_category():

@@ -25,6 +25,10 @@ class Category(Model):
         return super(self, Category).create(category_id=root, name="root")
 
     @classmethod
+    def get_root(self):
+        return super(self, Category).get(category_id=root)
+        
+    @classmethod
     def get_top_levels(cls):
         pass
 

@@ -2,7 +2,8 @@
 
 interface KillrAnswers {
     ask @0 (text :Text) -> (question: Question);
-    createCategory @1 (i: Text) -> (category: Category);
+    createCategory @1 (name: Text, parent: Text) -> (category: Category);
+    getRootCategory @2 () -> (category: Category);
 }
 
 struct Question {

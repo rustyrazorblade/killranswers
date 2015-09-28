@@ -2,6 +2,7 @@ import os
 import socket
 import capnp
 import killranswers_capnp
+from killranswers.categories import Category
 
 class KillrAnswersServer(killranswers_capnp.KillrAnswers.Server):
     def ask(self, text, **kwargs):
@@ -10,6 +11,18 @@ class KillrAnswersServer(killranswers_capnp.KillrAnswers.Server):
         q = killranswers_capnp.Question.new_message(questionId="test",
                                         questionText="blah")
         return q
+
+    def createCategory(self, name, parent, **kwargs):
+        cat = killranswers_capnp.Category.new_message()
+        return cat
+
+    def getRootCategory(self, **kwargs):
+        root = Category.get_root()
+        cat = killranswers_capnp.Category.new_message()
+        # cat.categoryId = root.category_id
+        # cat.name = root.name
+        return cat
+
 
 def get_server():
     server = capnp.TwoPartyServer('*:6000', bootstrap=KillrAnswersServer())

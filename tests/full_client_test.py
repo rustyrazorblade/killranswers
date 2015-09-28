@@ -5,14 +5,21 @@ import capnp
 import killranswers_capnp
 import socket
 
-client = capnp.TwoPartyClient("localhost:6000")
-cap = client.bootstrap()
-cap = cap.cast_as(killranswers_capnp.KillrAnswers)
+if __name__  == "__main__":
+    client = capnp.TwoPartyClient("localhost:6000")
+    cap = client.bootstrap()
+    cap = cap.cast_as(killranswers_capnp.KillrAnswers)
 
-results = []
-def add_result(x, n):
-    results.append(x)
-    n()
+    # get root category
+    root = cap.getRootCategory().wait()
+    cat_id = root.categoryId
+    # cat = cap.createCategory(name="test", parent=root.categoryId).wait()
 
-result = cap.ask(text="test")
-print result.wait()
+    # print "new category: ",
+    # print cat
+
+    # create a category
+
+
+    result = cap.ask(text="test")
+    print result.wait()
