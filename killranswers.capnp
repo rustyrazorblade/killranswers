@@ -11,6 +11,7 @@ interface KillrAnswers {
 struct Question {
     id @0 : Text;
     text @1 : Text;
+    category @2 : Text;
 }
 
 struct Category {

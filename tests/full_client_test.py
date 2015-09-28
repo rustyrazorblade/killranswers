@@ -22,6 +22,9 @@ if __name__  == "__main__":
     total = time() - start
     print "Time: {}, {} per user".format(total, total / x)
 
+    user_id = str(uuid4())
+    user = cap.registerUser(user_id)
+
 
     # get root category
     root = cap.getRootCategory().wait()
@@ -37,5 +40,7 @@ if __name__  == "__main__":
     children = cap.getChildCategories(cat).wait()
     print "children ", children
 
-    result = cap.ask(text="api test").wait()
+    result = cap.ask(text="api test",
+                     category=new_cat.category.id,
+                     user=user_id).wait()
     print "api question: ", result

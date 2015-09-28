@@ -8,8 +8,14 @@ class KillrAnswersServer(killranswers_capnp.KillrAnswers.Server):
     def ask(self, text, category, user, **kwargs):
         print "incoming"
         print str(text)
-        q = killranswers_capnp.Question.new_message(id="test",
-                                        text="blah")
+        cat = Category.get(category)
+        u = User.get(user)
+        question = Question.create(cat, text, u)
+
+        q = killranswers_capnp.Question.new_message(id=str(question.question_id),
+                                        text=question.text,
+                                        category=str(cat.category_id)
+                                        )
         return q
 
     def createCategory(self, text, parent, **kwargs):
