@@ -74,7 +74,6 @@ class Category(Model):
 
 class CategoryCounters(Model):
     category_id = UUID(primary_key=True)
-
     questions = Counter() # direct questions
     questions_total = Counter() # including all subs
     answers = Counter() # direct

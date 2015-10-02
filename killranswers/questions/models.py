@@ -2,7 +2,7 @@ from uuid import uuid1
 
 from cassandra.cqlengine.models import Model
 from cassandra.cqlengine.columns import *
-
+from killranswers.answers.models import Answer
 
 
 class Question(Model):
@@ -29,9 +29,14 @@ class Question(Model):
                                   text=text)
         # update category statistics
         return question
+
     @classmethod
     def get(cls, question_id):
         return super(cls, Question).get(question_id=question_id)
+
+    def answer(self, user, text):
+        answer = Answer.create(user, self, text)
+        return answer
 
 class QuestionByCategory(Model):
     # sorted by newest first

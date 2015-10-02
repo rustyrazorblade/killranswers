@@ -53,7 +53,7 @@ class KillrAnswersServer(api.KillrAnswers.Server):
         q = Question.get(question)
         u = User.get(user)
 
-        answer = Answer.create(user=u, question=q, text=text)
+        answer = q.answer(user=u, text=text)
         args = {"id": str(answer.answer_id),
                 "question": str(q.question_id),
                 "user": str(u.user_id),
