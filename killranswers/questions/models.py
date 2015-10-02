@@ -38,7 +38,7 @@ class Question(Model):
         answer = Answer.create(user, self, text)
         return answer
 
-    def get_answers(self, offset_answer, limit):
+    def get_answers(self, offset_answer=None, limit=None):
         answers = Answer.objects(question_id=self.question_id)
         return answers
 
