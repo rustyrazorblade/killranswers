@@ -1,12 +1,12 @@
 @0xce4c7cd66480f6f2;
 
 interface KillrAnswers {
-    ask @0 (text :Text, category :Text, user :Text) -> (question: Question);
-    createCategory @1 (text :Text, parent :Text) -> (category: Category);
+    ask @0 (text :Text, category :Text, user :Text) -> (question: Text);
+    createCategory @1 (text :Text, parent :Text) -> (category: Text);
     getRootCategory @2 () -> (category: Category);
     registerUser @3 (user_id :Text) -> ();
     getChildCategories @4 (parent :Text) -> ( categories:List(Category));
-    answer @5 (question : Text, user : Text, text : Text) -> (answer: Answer);
+    answer @5 (question : Text, user : Text, text : Text) -> (answer: Text);
     getAnswers @6 (question: Text) -> (answers: List(Answer) );
     voteQuestion @7 (question: Text, user :Text, vote :Int8) -> (rating: Int8);
     voteAnswer @8 (answer: Text, user :Text, vote :Int8) -> (rating: Int8);

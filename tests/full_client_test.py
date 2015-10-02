@@ -42,35 +42,37 @@ if __name__  == "__main__":
 
     # the oldest question in the universe
     result = cap.ask(text="Dr. Who?",
-                     category=new_cat.category.id,
+                     category=new_cat.category,
                      user=user_id).wait()
     print "api question: ", result
 
     q = result.question
     # answer the question...
-    answer = cap.answer(question=q.id, user=user_id, text="Silence will fall.").wait()
+    answer = cap.answer(question=q, user=user_id, text="Silence will fall.").wait()
     print answer
 
     # add a few more
-    answer = cap.answer(question=q.id, user=user_id, text="Open the pandorica.").wait()
-    answer = cap.answer(question=q.id, user=user_id, text="Reboot the universe.").wait()
+    answer = cap.answer(question=q, user=user_id, text="Open the pandorica.").wait()
+    answer = cap.answer(question=q, user=user_id, text="Reboot the universe.").wait()
 
     # get the answers
-    answers = cap.getAnswers(q.id).wait()
+    answers = cap.getAnswers(q).wait()
     print answers
 
-    answer = cap.answer(question=q.id, user=user_id, text="Open the pandorica.  Again.")
-    answer = cap.answer(question=q.id, user=user_id, text="Reboot the universe. Again")
-    answers = cap.getAnswers(q.id).wait()
+    answer = cap.answer(question=q, user=user_id, text="Open the pandorica.  Again.")
+    answer = cap.answer(question=q, user=user_id, text="Reboot the universe. Again")
+    answers = cap.getAnswers(q).wait()
     print answers
 
     # simple load test
     start = time()
-    i = 1000
+    i = 10
     for x in range(i):
-        p = cap.answer(question=q.id, user=user_id, text="Test {}".format(x))
-    p.wait()
+        p = cap.answer(question=q, user=user_id, text="Test {}".format(x))
+    answer = p.wait()
     taken = time() - start
     # answers = cap.getAnswers(q.id).wait()
     print answers
     print "time taken: {}, {} per sec".format(taken, float(i) / taken)
+
+    answer.answer

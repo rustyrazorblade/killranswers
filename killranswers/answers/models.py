@@ -15,8 +15,8 @@ class Answer(Model):
     @classmethod
     def create(cls, user, question, text):
         answer = super(cls, Answer).create(question_id=question.question_id,
-                                  user_id=user.user_id,
-                                  text=text)
+                                           user_id=user.user_id,
+                                           text=text)
         return answer
 
     @property

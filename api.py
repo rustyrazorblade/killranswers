@@ -7,23 +7,15 @@ from killranswers import User, Category, Question, Answer
 
 class KillrAnswersServer(api.KillrAnswers.Server):
     def ask(self, text, category, user, **kwargs):
-        print "incoming"
-        print str(text)
         cat = Category.get(category)
         u = User.get(user)
         question = Question.create(cat, text, u)
-        q = api.Question.new_message(id=str(question.question_id),
-                                     text=question.text,
-                                     category=str(cat.category_id))
-        return q
+        return str(question.question_id)
 
     def createCategory(self, text, parent, **kwargs):
         p = Category.get(category_id=parent)
         cat = p.create_sub(text)
-        c = api.Category.new_message()
-        c.id = str(cat.category_id)
-        c.name = cat.name
-        return c
+        return str(cat.category_id)
 
     def getRootCategory(self, **kwargs):
         root = Category.get_root()
@@ -50,17 +42,11 @@ class KillrAnswersServer(api.KillrAnswers.Server):
         return response
 
     def answer(self, question, user, text, **kwargs):
-        print "Answering", question, user, text
         q = Question.get(question)
         u = User.get(user)
 
         answer = q.answer(user=u, text=text)
-        args = {"id": str(answer.answer_id),
-                "question": str(q.question_id),
-                "user": str(u.user_id),
-                "text": answer.text}
-        print args
-        return api.Answer.new_message(**args)
+        return str(answer.answer_id)
 
     def getAnswers(self, question, **kwargs):
         q = Question.get(question)
