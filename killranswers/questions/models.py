@@ -9,7 +9,8 @@ class Question(Model):
     __table_name__ = "question"
     question_id = TimeUUID(primary_key=True, default=uuid1)
     user_id = Text()
-    text = Text()
+    title = Text()
+    text = Text() # body of question
     category_id = UUID(required=True)
 
     @classmethod
@@ -34,7 +35,8 @@ class Question(Model):
 
 class QuestionByCategory(Model):
     # sorted by newest first
-    category_id = UUID(primary_key=True)
+    category_id = UUID(primary_key=True, partition_key=True)
+    # day = DateTime(primary_key=True, partition_key=True)
     question_id = TimeUUID(primary_key=True, clustering_order="DESC")
     user_id = Text()
     text = Text(required=True)
@@ -44,3 +46,12 @@ class QuestionRating(Model):
     question_id = TimeUUID(primary_key=True)
     user_id = Text(primary_key=True)
     rating = Integer()
+
+class QuestionByCategorySorted(Model):
+    """
+    using day to limit the tombstone effect for paginating way back
+    """
+    category_id = UUID(primary_key=True, partition_key=True)
+    day = DateTime(primary_key=True, partition_key=True)
+    sort_key = TimeUUID(primary_key=True)
+    question_id = TimeUUID()
