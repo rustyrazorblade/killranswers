@@ -3,7 +3,8 @@ from uuid import uuid1
 from cassandra.cqlengine.models import Model
 from cassandra.cqlengine.columns import *
 from killranswers.answers.models import Answer
-from killranswers.ratings.models import QuestionRating
+from killranswers.ratings.models import QuestionRating, vote
+
 class Question(Model):
     __table_name__ = "question"
     question_id = TimeUUID(primary_key=True, default=uuid1)
@@ -46,6 +47,7 @@ class Question(Model):
         return self.question_id
 
 
+Question.vote = vote(QuestionRating)
 
 
 class QuestionByCategory(Model):

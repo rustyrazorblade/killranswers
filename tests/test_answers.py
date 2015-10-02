@@ -15,4 +15,4 @@ def test_answer_question():
     answer = Answer.create(user=u, question=question, text="monkey")
 
     u2 = User.create(user_id=uuid4())
-    answer.rate(u2, 1)
+    answer.vote(u2, 1)

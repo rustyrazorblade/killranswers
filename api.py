@@ -76,10 +76,16 @@ class KillrAnswersServer(api.KillrAnswers.Server):
         return resp
 
     def voteQuestion(self, question, user, vote, **kwargs):
-        pass
+        q = Question.get(question)
+        u = User.get(user)
+        q.vote(u, vote)
+        return vote
 
     def voteAnswer(self, answer, user, vote, **kwargs):
-        pass
+        a = Answer.get(answer)
+        u = User.get(user)
+        a.vote(user, vote)
+        return vote
 
 
 def get_server():

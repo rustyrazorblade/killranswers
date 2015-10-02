@@ -3,7 +3,7 @@ from uuid import uuid1
 from cassandra.cqlengine.models import Model
 from cassandra.cqlengine.columns import *
 
-from killranswers.ratings.models import AnswerRating, rate
+from killranswers.ratings.models import AnswerRating, vote
 
 
 class Answer(Model):
@@ -23,4 +23,4 @@ class Answer(Model):
     def id(self):
         return self.question_id
 
-Answer.rate = rate(AnswerRating)
+Answer.vote = vote(AnswerRating)

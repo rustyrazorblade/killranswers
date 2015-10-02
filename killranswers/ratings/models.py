@@ -3,7 +3,7 @@ from uuid import uuid1
 from cassandra.cqlengine.models import Model
 from cassandra.cqlengine.columns import *
 
-def rate(rating_table):
+def vote(rating_table):
     def f(self, user, vote):
         fields = {
             rating_table._partition_keys.items()[0][0] : self.id,
