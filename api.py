@@ -40,7 +40,7 @@ class KillrAnswersServer(api.KillrAnswers.Server):
         children = cat.get_children()
 
         response = []
-        
+
         for x in children:
             tmp = api.Category.new_message()
             tmp.id = str(x.category_id)
@@ -62,11 +62,18 @@ class KillrAnswersServer(api.KillrAnswers.Server):
         print args
         return api.Answer.new_message(**args)
 
-    def getAnswers(self, question):
-        response = api.AnswerList.new_message()
+    def getAnswers(self, question, **kwargs):
         q = Question.get(question)
         answers = q.get_answers()
-        response.init("answers")
+        resp = []
+        for a in answers:
+            tmp = api.Answer.new_message()
+            tmp.id = str(a.answer_id)
+            tmp.question = str(a.question_id)
+            tmp.user = str(a.user_id)
+            tmp.text = a.text
+            resp.append(tmp)
+        return resp
 
 
 def get_server():

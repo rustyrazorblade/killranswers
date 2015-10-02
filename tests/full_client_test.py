@@ -50,3 +50,11 @@ if __name__  == "__main__":
     # answer the question...
     answer = cap.answer(question=q.id, user=user_id, text="Silence will fall.").wait()
     print answer
+
+    # add a few more
+    answer = cap.answer(question=q.id, user=user_id, text="Open the pandorica.").wait()
+    answer = cap.answer(question=q.id, user=user_id, text="Reboot the universe.").wait()
+
+    # get the answers
+    answers = cap.getAnswers(q.id).wait()
+    print answers
