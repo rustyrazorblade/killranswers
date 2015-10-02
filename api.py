@@ -39,18 +39,14 @@ class KillrAnswersServer(api.KillrAnswers.Server):
         cat = Category.get(parent)
         children = cat.get_children()
 
-        # response = api.CategoryList.new_message()
-        # cats = response.init("categories", len(children))
-        i = 0
         response = []
+        
         for x in children:
             tmp = api.Category.new_message()
             tmp.id = str(x.category_id)
             tmp.name = x.child_category_name
-            # cats[i].id = str(x.category_id)
-            # cats[i].name = x.child_category_name
-            # i += 1
             response.append(tmp)
+
         return response
 
     def answer(self, question, user, text, **kwargs):

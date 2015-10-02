@@ -7,7 +7,7 @@ interface KillrAnswers {
     registerUser @3 (user_id :Text) -> ();
     getChildCategories @4 (parent :Text) -> ( categories:List(Category));
     answer @5 (question : Text, user : Text, text : Text) -> (answer: Answer);
-    getAnswers @6 (question: Text) -> (answers: AnswerList );
+    getAnswers @6 (question: Text) -> (answers: List(Answer) );
 }
 
 struct Question {
