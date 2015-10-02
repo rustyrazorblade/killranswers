@@ -10,6 +10,7 @@ from killranswers.categories.models import *
 from killranswers.questions.models import *
 from killranswers.users.models import *
 from killranswers.answers.models import *
+from killranswers.ratings.models import *
 
 cassandra()
 

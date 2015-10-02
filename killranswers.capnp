@@ -8,6 +8,8 @@ interface KillrAnswers {
     getChildCategories @4 (parent :Text) -> ( categories:List(Category));
     answer @5 (question : Text, user : Text, text : Text) -> (answer: Answer);
     getAnswers @6 (question: Text) -> (answers: List(Answer) );
+    voteQuestion @7 (question: Text, user :Text, vote :Int8) -> (rating: Int8);
+    voteAnswer @8 (answer: Text, user :Text, vote :Int8) -> (rating: Int8);
 }
 
 struct Question {

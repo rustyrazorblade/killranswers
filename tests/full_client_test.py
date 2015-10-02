@@ -58,3 +58,19 @@ if __name__  == "__main__":
     # get the answers
     answers = cap.getAnswers(q.id).wait()
     print answers
+
+    answer = cap.answer(question=q.id, user=user_id, text="Open the pandorica.  Again.")
+    answer = cap.answer(question=q.id, user=user_id, text="Reboot the universe. Again")
+    answers = cap.getAnswers(q.id).wait()
+    print answers
+
+    # simple load test
+    start = time()
+    i = 1000
+    for x in range(i):
+        p = cap.answer(question=q.id, user=user_id, text="Test {}".format(x))
+    p.wait()
+    taken = time() - start
+    # answers = cap.getAnswers(q.id).wait()
+    print answers
+    print "time taken: {}, {} per sec".format(taken, float(i) / taken)

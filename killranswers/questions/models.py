@@ -3,8 +3,7 @@ from uuid import uuid1
 from cassandra.cqlengine.models import Model
 from cassandra.cqlengine.columns import *
 from killranswers.answers.models import Answer
-
-
+from killranswers.ratings.models import QuestionRating
 class Question(Model):
     __table_name__ = "question"
     question_id = TimeUUID(primary_key=True, default=uuid1)
@@ -42,6 +41,13 @@ class Question(Model):
         answers = Answer.objects(question_id=self.question_id)
         return answers
 
+    @property
+    def id(self):
+        return self.question_id
+
+
+
+
 class QuestionByCategory(Model):
     # sorted by newest first
     category_id = UUID(primary_key=True, partition_key=True)
@@ -50,11 +56,6 @@ class QuestionByCategory(Model):
     user_id = Text()
     text = Text(required=True)
 
-class QuestionRating(Model):
-    # probably just an upvote 1 / downvote 0 thing
-    question_id = TimeUUID(primary_key=True)
-    user_id = Text(primary_key=True)
-    rating = Integer()
 
 class QuestionByCategorySorted(Model):
     """
@@ -62,5 +63,5 @@ class QuestionByCategorySorted(Model):
     """
     category_id = UUID(primary_key=True, partition_key=True)
     day = DateTime(primary_key=True, partition_key=True)
-    sort_key = TimeUUID(primary_key=True)
+    sort_key = TimeUUID(primary_key=True, clustering_order="DESC")
     question_id = TimeUUID()

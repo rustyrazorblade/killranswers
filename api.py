@@ -4,6 +4,7 @@ import capnp
 import killranswers_capnp as api
 from killranswers import User, Category, Question, Answer
 
+
 class KillrAnswersServer(api.KillrAnswers.Server):
     def ask(self, text, category, user, **kwargs):
         print "incoming"
@@ -11,7 +12,6 @@ class KillrAnswersServer(api.KillrAnswers.Server):
         cat = Category.get(category)
         u = User.get(user)
         question = Question.create(cat, text, u)
-
         q = api.Question.new_message(id=str(question.question_id),
                                      text=question.text,
                                      category=str(cat.category_id))
@@ -74,6 +74,12 @@ class KillrAnswersServer(api.KillrAnswers.Server):
             tmp.text = a.text
             resp.append(tmp)
         return resp
+
+    def voteQuestion(self, question, user, vote, **kwargs):
+        pass
+
+    def voteAnswer(self, answer, user, vote, **kwargs):
+        pass
 
 
 def get_server():

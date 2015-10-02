@@ -3,6 +3,8 @@ from uuid import uuid1
 from cassandra.cqlengine.models import Model
 from cassandra.cqlengine.columns import *
 
+from killranswers.ratings.models import AnswerRating, rate
+
 
 class Answer(Model):
     question_id = TimeUUID(primary_key=True)
@@ -16,3 +18,9 @@ class Answer(Model):
                                   user_id=user.user_id,
                                   text=text)
         return answer
+
+    @property
+    def id(self):
+        return self.question_id
+
+Answer.rate = rate(AnswerRating)
