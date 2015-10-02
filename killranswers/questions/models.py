@@ -38,6 +38,10 @@ class Question(Model):
         answer = Answer.create(user, self, text)
         return answer
 
+    def get_answers(self, offset_answer, limit):
+        answers = Answer.objects(question_id=self.question_id)
+        return answers
+
 class QuestionByCategory(Model):
     # sorted by newest first
     category_id = UUID(primary_key=True, partition_key=True)
