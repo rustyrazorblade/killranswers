@@ -16,9 +16,6 @@ struct Question {
     category @2 : Text;
 }
 
-struct QuestionList {
-    questions @0 : List(Question);
-}
 
 struct Category {
     id @0 : Text;
@@ -30,9 +27,4 @@ struct Answer {
     question @1 : Text;
     user @2 : Text;
     text @3 : Text;
-}
-
-struct AnswerList {
-    answers @0 : List(Answer);
-    total @1 : Int16;
 }
