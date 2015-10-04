@@ -1,9 +1,12 @@
+from gevent import monkey
+monkey.patch_all()
+import gevent
 import os
 import socket
 import capnp
 import killranswers_capnp as api
 from killranswers import User, Category, Question, Answer
-
+import time
 
 class KillrAnswersServer(api.KillrAnswers.Server):
     def ask(self, text, category, user, **kwargs):
