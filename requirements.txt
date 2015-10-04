@@ -62,4 +62,5 @@ tornado==4.2.1
 traitlets==4.0.0
 waitress==0.8.10
 wsgiref==0.1.2
+CommonMark==0.5.4
 -e git+https://github.com/rtfd/recommonmark.git@ed65113f82d578900b840cf3e0edf7dfa6c2b88c#egg=recommonmark-master
