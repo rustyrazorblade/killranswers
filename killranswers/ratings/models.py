@@ -11,6 +11,8 @@ def vote(rating_table):
             "user_id":user.user_id
         }
         rating_table.create(**fields)
+        # what's the new rating?
+        return 0
     return f
 
 

@@ -8,6 +8,9 @@ import killranswers_capnp as api
 from killranswers import User, Category, Question, Answer
 import time
 
+import logging
+log = logging.getLogger(__name__)
+
 class KillrAnswersServer(api.KillrAnswers.Server):
     def ask(self, text, category, user, **kwargs):
         cat = Category.get(category)
@@ -65,16 +68,25 @@ class KillrAnswersServer(api.KillrAnswers.Server):
         return resp
 
     def voteQuestion(self, question, user, vote, **kwargs):
+        log.debug("voting question {} {} {}".format(question, user, vote))
         q = Question.get(question)
+        print q
         u = User.get(user)
-        q.vote(u, vote)
-        return vote
+        print u
+        new_rating = q.vote(u, vote)
+        print new_rating
+        return new_rating
 
-    def voteAnswer(self, answer, user, vote, **kwargs):
-        a = Answer.get(answer)
+    def voteAnswer(self, question, answer, user, vote, **kwargs):
+        print "voting answer", answer, user, vote
+        # question = Question.get(question)
+        a = Answer.get(question_id=question,
+                       answer_id=answer)
+        print a
         u = User.get(user)
-        a.vote(user, vote)
-        return vote
+        print u
+        new_rating = a.vote(u, vote)
+        return new_rating
 
 
 def get_server():

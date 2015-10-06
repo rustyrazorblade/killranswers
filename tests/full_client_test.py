@@ -47,9 +47,17 @@ if __name__  == "__main__":
     print "api question: ", result
 
     q = result.question
+
+    user_id2 = str(uuid4())
+    user2 = cap.registerUser(user_id2).wait()
+    print "Question rating: ", cap.voteQuestion(q, user_id2, 1).wait()
+
     # answer the question...
     answer = cap.answer(question=q, user=user_id, text="Silence will fall.").wait()
     print answer
+
+    # rate the answer
+    print "Answer rating: ", cap.voteAnswer(q, answer.answer, user_id2, 1).wait()
 
     # add a few more
     answer = cap.answer(question=q, user=user_id, text="Open the pandorica.").wait()

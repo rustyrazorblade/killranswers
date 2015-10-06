@@ -9,7 +9,7 @@ interface KillrAnswers {
     answer @5 (question : Text, user : Text, text : Text) -> (answer: Text);
     getAnswers @6 (question: Text) -> (answers: List(Answer) );
     voteQuestion @7 (question: Text, user :Text, vote :Int8) -> (rating: Int8);
-    voteAnswer @8 (answer: Text, user :Text, vote :Int8) -> (rating: Int8);
+    voteAnswer @8 (question: Text, answer: Text, user :Text, vote :Int8) -> (rating: Int8);
     moveQuestion @9 (question: Text, category : Text);
 }
 

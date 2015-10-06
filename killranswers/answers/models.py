@@ -21,6 +21,6 @@ class Answer(Model):
 
     @property
     def id(self):
-        return self.question_id
+        return self.answer_id
 
 Answer.vote = vote(AnswerRating)
