@@ -21,7 +21,16 @@ class QuestionRating(Model):
     user_id = Text(primary_key=True, index=True)
     vote = Integer()
 
+class QuestionRatingAggregate(Model):
+    question_id = TimeUUID(primary_key=True)
+    score = Counter()
+
 class AnswerRating(Model):
     answer_id = TimeUUID(primary_key=True)
     user_id = Text(primary_key=True, index=True)
     vote = Integer()
+
+class AnswerRatingAggregate(Model):
+    question_id = TimeUUID(primary_key=True)
+    answer_id = TimeUUID(primary_key=True)
+    score = Counter()
