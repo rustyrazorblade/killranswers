@@ -1,13 +1,23 @@
+#[macro_use]
+extern crate lazy_static;
 extern crate capnp;
 extern crate capnp_rpc;
 // extern crate killranswers_capnp;
 
 use capnp::capability::{Server};
 use capnp_rpc::ez_rpc::EzRpcServer;
-// use killranswers_capnp::killranswers;
+use std::collections::HashMap;
 
 pub mod killranswers_capnp {
   include!(concat!(env!("OUT_DIR"), "/killranswers_capnp.rs"));
+}
+
+lazy_static! {
+    static ref QUERIES: HashMap<String, String> = {
+        let mut m = HashMap::new();
+        m.insert("create_user".to_string(), "insert into user (user_id), values (?)".to_string());
+        m
+    };
 }
 
 use killranswers_capnp::killr_answers;

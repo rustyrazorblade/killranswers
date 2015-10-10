@@ -14,7 +14,7 @@ if __name__  == "__main__":
 
     # create users
 
-    x = 50000
+    x = 50
     start = time()
     for i in range(x):
         print "Registering user", i
@@ -22,10 +22,10 @@ if __name__  == "__main__":
     total = time() - start
     print "Time: {}, {} per user, {} per second".format(total, total / x, x / total)
 
-    sys.exit()
-
     user_id = str(uuid4())
     user = cap.registerUser(user_id)
+
+    sys.exit()
 
 
     # get root category

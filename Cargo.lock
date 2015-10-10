@@ -5,6 +5,7 @@ dependencies = [
  "capnp 0.5.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "capnp-rpc 0.5.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "capnpc 0.5.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "lazy_static 0.1.15 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
@@ -36,4 +37,9 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
  "capnp 0.5.0 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
+
+[[package]]
+name = "lazy_static"
+version = "0.1.15"
+source = "registry+https://github.com/rust-lang/crates.io-index"
 

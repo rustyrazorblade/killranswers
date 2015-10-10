@@ -11,3 +11,4 @@ capnpc = "0.5.0"
 [dependencies]
 capnp = "0.5.0"
 capnp-rpc = "0.5.0"
+lazy_static = "0.1.15"
