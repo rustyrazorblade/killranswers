@@ -2,11 +2,12 @@
 extern crate lazy_static;
 extern crate capnp;
 extern crate capnp_rpc;
-// extern crate killranswers_capnp;
+extern crate cassandra;
 
+use std::collections::HashMap;
 use capnp::capability::{Server};
 use capnp_rpc::ez_rpc::EzRpcServer;
-use std::collections::HashMap;
+use cassandra::*;
 
 pub mod killranswers_capnp {
   include!(concat!(env!("OUT_DIR"), "/killranswers_capnp.rs"));
