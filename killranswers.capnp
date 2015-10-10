@@ -2,9 +2,10 @@
 
 interface KillrAnswers {
     ask @0 (text :Text, category :Text, user :Text) -> (question: Text);
+    registerUser @1  (userId :Text);
+    
 #    createCategory @1 (text :Text, parent :Text) -> (category: Text);
 #    getRootCategory @2 () -> (category: Category);
-#    registerUser @3 (userId :Text);
 #    answer @4 (question : Text, user : Text, text : Text) -> (answer: Text);
 #    voteQuestion @5 (question: Text, user :Text, vote :Int8) -> (rating: Int8);
 #    voteAnswer @6 (question: Text, answer: Text, user :Text, vote :Int8) -> (rating: Int8);

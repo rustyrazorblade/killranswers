@@ -18,6 +18,9 @@ impl killr_answers::Server for KillrAnswersImpl {
     fn ask(&mut self, mut context: killr_answers::AskContext) {
 
     }
+    fn register_user(&mut self, mut context: killr_answers::RegisterUserContext) {
+        
+    }
 
 }
 
