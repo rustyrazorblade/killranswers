@@ -4,13 +4,13 @@ interface KillrAnswers {
     ask @0 (text :Text, category :Text, user :Text) -> (question: Text);
     createCategory @1 (text :Text, parent :Text) -> (category: Text);
     getRootCategory @2 () -> (category: Category);
-    registerUser @3 (user_id :Text) -> ();
-    getChildCategories @4 (parent :Text) -> ( categories:List(Category));
-    answer @5 (question : Text, user : Text, text : Text) -> (answer: Text);
-    getAnswers @6 (question: Text) -> (answers: List(Answer) );
-    voteQuestion @7 (question: Text, user :Text, vote :Int8) -> (rating: Int8);
-    voteAnswer @8 (question: Text, answer: Text, user :Text, vote :Int8) -> (rating: Int8);
-    moveQuestion @9 (question: Text, category : Text);
+    registerUser @3 (userId :Text);
+    answer @4 (question : Text, user : Text, text : Text) -> (answer: Text);
+    voteQuestion @5 (question: Text, user :Text, vote :Int8) -> (rating: Int8);
+    voteAnswer @6 (question: Text, answer: Text, user :Text, vote :Int8) -> (rating: Int8);
+    moveQuestion @7 (question: Text, category : Text);
+    getAnswers @8 (question: Text) -> (answers: List(Answer) );
+    getChildCategories @9 (parent :Text) -> ( categories:List(Category));
 }
 
 struct Question {
