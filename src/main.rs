@@ -9,9 +9,12 @@ use capnp::capability::{Server};
 use capnp_rpc::ez_rpc::EzRpcServer;
 use cassandra::*;
 
+// this is generated automatically as part of the build process
+// see build.rs 
 pub mod killranswers_capnp {
   include!(concat!(env!("OUT_DIR"), "/killranswers_capnp.rs"));
 }
+use killranswers_capnp::killr_answers;
 
 static CREATE_USER : &'static str = "insert into user (user_id), values (?)";
 
@@ -19,7 +22,6 @@ lazy_static! {
 
 }
 
-use killranswers_capnp::killr_answers;
 
 struct KillrAnswersImpl;
 
