@@ -13,12 +13,10 @@ pub mod killranswers_capnp {
   include!(concat!(env!("OUT_DIR"), "/killranswers_capnp.rs"));
 }
 
+static CREATE_USER : &'static str = "insert into user (user_id), values (?)";
+
 lazy_static! {
-    static ref QUERIES: HashMap<String, String> = {
-        let mut m = HashMap::new();
-        m.insert("create_user".to_string(), "insert into user (user_id), values (?)".to_string());
-        m
-    };
+
 }
 
 use killranswers_capnp::killr_answers;
