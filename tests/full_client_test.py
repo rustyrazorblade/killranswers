@@ -14,13 +14,13 @@ if __name__  == "__main__":
 
     # create users
 
-    x = 5
+    x = 50000
     start = time()
     for i in range(x):
         print "Registering user", i
         cap.registerUser(str(uuid4())).wait()
     total = time() - start
-    print "Time: {}, {} per user".format(total, total / x)
+    print "Time: {}, {} per user, {} per second".format(total, total / x, x / total)
 
     sys.exit()
 

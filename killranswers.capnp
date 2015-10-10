@@ -1,9 +1,9 @@
 @0xce4c7cd66480f6f2;
 
 interface KillrAnswers {
-    ask @0 (text :Text, category :Text, user :Text) -> (question: Text);
-    registerUser @1  (userId :Text);
-    
+    registerUser @0  (userId :Text);
+#    ask @0 (text :Text, category :Text, user :Text) -> (question: Text);
+
 #    createCategory @1 (text :Text, parent :Text) -> (category: Text);
 #    getRootCategory @2 () -> (category: Category);
 #    answer @4 (question : Text, user : Text, text : Text) -> (answer: Text);

@@ -15,11 +15,11 @@ use killranswers_capnp::killr_answers;
 struct KillrAnswersImpl;
 
 impl killr_answers::Server for KillrAnswersImpl {
-    fn ask(&mut self, mut context: killr_answers::AskContext) {
-        println!("Asking");
-    }
+    // fn ask(&mut self, mut context: killr_answers::AskContext) {
+    //     println!("Asking");
+    // }
     fn register_user(&mut self, mut context: killr_answers::RegisterUserContext) {
-
+        context.done();
     }
 
 }
