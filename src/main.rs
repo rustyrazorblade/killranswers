@@ -24,6 +24,7 @@ static CREATE_USER : &'static str = "insert into user (user_id), values (?)";
 
 struct KillrAnswersImpl {
     db: CassSession,
+    queries: HashMap<String, CassPrepared>,
 }
 
 impl KillrAnswersImpl {
@@ -34,8 +35,8 @@ impl KillrAnswersImpl {
         cluster.set_contact_points("127.0.0.1").unwrap();
         cluster.set_protocol_version(3).unwrap();
         let mut session = CassSession::new().connect(&mut cluster).wait().unwrap();
-
-        Box::new(KillrAnswersImpl{ db: session })
+        let mut queries = HashMap::new();
+        Box::new(KillrAnswersImpl{ db: session, queries: queries })
     }
 }
 
