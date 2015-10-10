@@ -8,7 +8,7 @@ from uuid import uuid4
 from time import time
 
 if __name__  == "__main__":
-    client = capnp.TwoPartyClient("localhost:6000")
+    client = capnp.TwoPartyClient("127.0.0.1:6000")
     cap = client.bootstrap()
     cap = cap.cast_as(killranswers_capnp.KillrAnswers)
 
@@ -21,6 +21,8 @@ if __name__  == "__main__":
         cap.registerUser(str(uuid4())).wait()
     total = time() - start
     print "Time: {}, {} per user".format(total, total / x)
+
+    sys.exit()
 
     user_id = str(uuid4())
     user = cap.registerUser(user_id)
