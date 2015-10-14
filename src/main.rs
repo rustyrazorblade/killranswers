@@ -1,5 +1,4 @@
 #[macro_use]
-extern crate lazy_static;
 extern crate capnp;
 extern crate capnp_rpc;
 extern crate cassandra;
@@ -19,7 +18,7 @@ use killranswers_capnp::killr_answers;
 // queries for prepared statements
 // schema is managed in the python part of the app
 // see the cqlengine Models
-static CREATE_USER : &'static str = "insert into user (user_id), values (?)";
+static CREATE_USER : &'static str = "insert into killranalytics.user (user_id), values (?)";
 
 
 struct KillrAnswersImpl {
@@ -29,14 +28,33 @@ struct KillrAnswersImpl {
 
 impl KillrAnswersImpl {
     // returns a Boxed implemention
-    fn new() -> Box<KillrAnswersImpl> {
+    fn new() -> Result<Box<KillrAnswersImpl>, CassError> {
 
         let mut cluster = CassCluster::new();
+        println!("Cluster created");
         cluster.set_contact_points("127.0.0.1").unwrap();
         cluster.set_protocol_version(3).unwrap();
         let mut session = CassSession::new().connect(&mut cluster).wait().unwrap();
+        println!("Connected");
+        // closure to prepare statement
         let mut queries = HashMap::new();
-        Box::new(KillrAnswersImpl{ db: session, queries: queries })
+
+        let mut prepared = try!(session.prepare(CREATE_USER));
+
+        println!("unwrapping and waiting");
+        match prepared.wait() {
+            Ok(prepared) => {
+                let name = "CREATE_USER".to_string();
+                println!("Created {}", name);
+                queries.insert(name, prepared);
+            }
+            Err(err) => {
+                println!("BAD NEWS FAIL");
+                panic!(err);
+            }
+        }
+        println!("new() done");
+        Ok(Box::new(KillrAnswersImpl{ db: session, queries: queries }))
     }
 }
 
@@ -54,7 +72,8 @@ fn main() {
     println!("Starting up...");
 
     let rpc_server = EzRpcServer::new("127.0.0.1:6000").unwrap();
-    let ka = Box::new(killr_answers::ServerDispatch { server : KillrAnswersImpl::new() });
+    let server = KillrAnswersImpl::new().unwrap();
+    let ka = Box::new(killr_answers::ServerDispatch { server : server });
     //
     rpc_server.serve(ka);
 
