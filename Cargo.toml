@@ -4,14 +4,12 @@ version = "0.1.0"
 authors = ["Jon Haddad <jon@jonhaddad.com>"]
 build = "build.rs"
 
-
 [build-dependencies]
 capnpc = "0.5.0"
 
 [dependencies]
 capnp = "0.5.0"
 capnp-rpc = "0.5.0"
-lazy_static = "0.1.15"
 
 [dependencies.cassandra]
 git = "https://github.com/tupshin/cassandra-rs"

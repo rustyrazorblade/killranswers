@@ -33,12 +33,15 @@ impl KillrAnswersImpl {
         let mut cluster = CassCluster::new();
         println!("Cluster created");
         cluster.set_contact_points("127.0.0.1").unwrap();
-        cluster.set_protocol_version(3).unwrap();
+        println!("Setting protocol version");
+        // cluster.set_protocol_version(3).unwrap();
+        println!("connecting");
         let mut session = CassSession::new().connect(&mut cluster).wait().unwrap();
         println!("Connected");
         // closure to prepare statement
         let mut queries = HashMap::new();
 
+        println!("preparing");
         let mut prepared = try!(session.prepare(CREATE_USER));
 
         println!("unwrapping and waiting");
