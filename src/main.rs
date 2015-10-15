@@ -34,7 +34,7 @@ impl KillrAnswersImpl {
         println!("Cluster created");
         cluster.set_contact_points("127.0.0.1").unwrap();
         println!("Setting protocol version");
-        // cluster.set_protocol_version(3).unwrap();
+        cluster.set_protocol_version(3).unwrap();
         println!("connecting");
         let mut session = cluster.connect().unwrap();
         println!("Connected");
@@ -65,6 +65,14 @@ impl killr_answers::Server for KillrAnswersImpl {
     //     println!("Asking");
     // }
     fn register_user(&mut self, mut context: killr_answers::RegisterUserContext) {
+        {
+            let (params, mut results) = context.get();
+            let user_id = params.get_user_id().unwrap();
+            let q = self.queries.get(&"CREATE_USER".to_string()).unwrap();
+            let mut q2 = q.bind();
+            q2.bind_string(1, &user_id).unwrap();
+            self.db.execute_statement(&q2).wait();
+        }
         context.done();
     }
 
