@@ -66,11 +66,15 @@ impl killr_answers::Server for KillrAnswersImpl {
     // }
     fn register_user(&mut self, mut context: killr_answers::RegisterUserContext) {
         {
+            println!("registering user");
             let (params, mut results) = context.get();
+            println!("Got context");
             let user_id = params.get_user_id().unwrap();
             let q = self.queries.get(&"CREATE_USER".to_string()).unwrap();
+            println!("have the prepared statement");
             let mut q2 = q.bind();
-            q2.bind_string(1, &user_id).unwrap();
+            q2.bind_string(0, &user_id).unwrap();
+            println!("executing");
             self.db.execute_statement(&q2).wait();
         }
         context.done();

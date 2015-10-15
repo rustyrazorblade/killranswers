@@ -14,7 +14,7 @@ if __name__  == "__main__":
 
     # create users
 
-    x = 500
+    x = 1000
     start = time()
     for i in range(x):
         # print "Registering user", i
