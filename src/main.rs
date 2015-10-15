@@ -18,25 +18,25 @@ use killranswers_capnp::killr_answers;
 // queries for prepared statements
 // schema is managed in the python part of the app
 // see the cqlengine Models
-static CREATE_USER : &'static str = "insert into killranswers.user (user_id), values (?)";
+static CREATE_USER : &'static str = "insert into killranswers.user (user_id) values (?)";
 
 
 struct KillrAnswersImpl {
-    db: CassSession,
-    queries: HashMap<String, CassPrepared>,
+    db: Session,
+    queries: HashMap<String, PreparedStatement>,
 }
 
 impl KillrAnswersImpl {
     // returns a Boxed implemention
-    fn new() -> Result<Box<KillrAnswersImpl>, CassError> {
+    fn new() -> Result<Box<KillrAnswersImpl>, CassandraError> {
 
-        let mut cluster = CassCluster::new();
+        let mut cluster = Cluster::new();
         println!("Cluster created");
         cluster.set_contact_points("127.0.0.1").unwrap();
         println!("Setting protocol version");
         // cluster.set_protocol_version(3).unwrap();
         println!("connecting");
-        let mut session = CassSession::new().connect(&mut cluster).wait().unwrap();
+        let mut session = cluster.connect().unwrap();
         println!("Connected");
         // closure to prepare statement
         let mut queries = HashMap::new();
@@ -48,7 +48,6 @@ impl KillrAnswersImpl {
         match prepared.wait() {
             Ok(prepared) => {
                 let name = "CREATE_USER".to_string();
-                println!("Created {}", name);
                 queries.insert(name, prepared);
             }
             Err(err) => {
