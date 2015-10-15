@@ -58,7 +58,7 @@ dependencies = [
 [[package]]
 name = "cassandra"
 version = "0.4.2"
-source = "git+https://github.com/tupshin/cassandra-rs#26b4bb0e87d72a36fe2c8f8fe85f758c30e8398a"
+source = "git+https://github.com/tupshin/cassandra-rs#627ee868fdb3ea58db757a3bf25e69678ad750ff"
 dependencies = [
  "cql_bindgen 0.1.3 (registry+https://github.com/rust-lang/crates.io-index)",
  "libc 0.1.10 (registry+https://github.com/rust-lang/crates.io-index)",
