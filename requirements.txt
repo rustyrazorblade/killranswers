@@ -1,5 +1,5 @@
-## The following requirements were added by pip --freeze:
 Babel==2.1.1
+CommonMark==0.5.4
 Cython==0.23.2
 Jinja2==2.8
 MarkupSafe==0.23
@@ -47,10 +47,12 @@ pickleshare==0.5
 ptyprocess==0.5
 py==1.4.30
 pycapnp==0.5.7
+pyev==0.9.0
 pytest==2.8.0
 pytz==2015.6
 pyzmq==14.7.0
 qtconsole==4.0.1
+-e git+https://github.com/rtfd/recommonmark.git@ed65113f82d578900b840cf3e0edf7dfa6c2b88c#egg=recommonmark-master
 simplegeneric==0.8.1
 six==1.9.0
 snowballstemmer==1.2.0
@@ -61,5 +63,3 @@ tornado==4.2.1
 traitlets==4.0.0
 waitress==0.8.10
 wsgiref==0.1.2
-CommonMark==0.5.4
--e git+https://github.com/rtfd/recommonmark.git@ed65113f82d578900b840cf3e0edf7dfa6c2b88c#egg=recommonmark-master
