@@ -11,7 +11,7 @@ class Question(Model):
     user_id = Text()
     title = Text()
     text = Text() # body of question
-    category_id = UUID(required=True)
+    #category_id = UUID(required=True)
 
     @classmethod
     def create(cls, category, text, user):
